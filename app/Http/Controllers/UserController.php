@@ -55,24 +55,26 @@ class UserController extends Controller
             'username' => 'required|max:12|unique:users|regex:/^[A-Za-z]+$/',
             'email' => 'required|email|unique:users|max:255',
             'role' => 'required|max:6',
+            'password' => 'required|min:8|max:50',
         ]);
 
- $pass = Str::upper(Str::random(8));
+       //$pass = Str::upper(Str::random(8));
         $userData = [
             'name'        =>$request->name,
             'username'    =>$request->username,
             'email'       =>$request->email,
-            'password'    =>bcrypt($pass),
+            'password'    => bcrypt($request->password),
             'role'        =>$request->role,
             'active'      => 'Y',
-            'two_factor'      => 'Y',
+            'two_factor'  => 'Y',
         ];
 
         $data = [
             'name'        =>$request->name,
             'username'    =>$request->username,
             'email'       =>$request->email,
-            'pass'        =>$pass,
+            'pass'        =>$request->password,
+           // 'pass'        =>$pass,
         ];
 
         try {
@@ -87,33 +89,50 @@ class UserController extends Controller
     }
 
 
+
     public function edit(User $user)
     {
         return view('roles.admin.users.edit', compact('user'));
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function update(Request $request , User $user)
     {
-        $validated = $request->validate([
+        if (!$request->ajax()) {
+            abort('404');
+        }
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:50',
-            'username' => 'required|max:12|regex:/^[A-Za-z]+$/|unique:users,username,'.$user->id.',id',
-            'email' => 'required|email|max:255|unique:users,email,'.$user->id.',id',
+            'username' => 'required|max:12|regex:/^[A-Za-z]+$/|unique:users,username,' . $user->id . ',id',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id . ',id',
             'role' => 'required|max:6',
+            'password' => 'nullable|min:8|max:50',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->all()]);
+        } else {
+
         $data = [
-            'name'        =>$request->name,
-            'username'    =>$request->username,
-            'email'       =>$request->email,
-            'password'    =>bcrypt(Str::upper(Str::random(8))),
-            'role'        =>$request->role,
-            'active'      =>$request->status,
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            //   'password'    =>bcrypt(Str::upper(Str::random(8))),
+            'role' => $request->role,
+            'active' => $request->status,
+            'password' => empty($request->password) ? $user->password : Hash::make($request->password),
         ];
 
 
         $this->_user->store($data, $user->id);
         return response()->json(['success' => 'Update Successfully.']);
-
+    }
     }
 
     public function destroy(User $user)
@@ -135,6 +154,7 @@ class UserController extends Controller
            // 'username'=>isset($request->username)?$request->username:Auth::user()->username,
             'name'=>isset($request->name)?$request->name:Auth::user()->name,
             'email'=>isset($request->email)?$request->email:Auth::user()->email,
+
         ];
 
 
