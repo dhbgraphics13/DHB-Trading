@@ -40,13 +40,12 @@ Route::group([ 'middleware' =>  ['auth' ]], function() { //all users
     Route::post('update/my.password',[HomeController::class,'changePassword'])->name('password.change');
     Route::post('2fa/status', [HomeController::class, 'twoFactorStatus'])->name('2fa.status');
     Route::get('orders/show/{orderId}', [OrderController::class,'show'])->name('order.show');
-    Route::post('submit/order-print-by', [OrderController::class,'orderPrintBy'])->name('order.print.by');
     Route::get('ticket/show/{ticketId}', [TicketController::class,'show'])->name('ticket.show');
 });
 
 
 
-Route::group([ 'middleware' =>  ['is_admin','auth' , '2fa' ]], function() { //admin and manager
+Route::group([ 'middleware' =>  ['is_admin','is_manager','auth' , '2fa' ]], function() { //admin and manager
     Route::resource('users',UserController::class);
     Route::resource('categories',CategoryController::class);
     Route::resource('orders',OrderController::class)->except(['update', 'show']);
