@@ -220,9 +220,9 @@ function getStatusName($id)
     }elseif ($id=="0"){
         return 'Pending';
     }elseif ($id=="1"){
-        return 'Order in Process';
+        return 'In Process';
     }elseif ($id=="2"){
-        return 'Order Complete';
+        return 'Complete';
     }elseif ($id=="3"){
         return 'Cancel';
     }
