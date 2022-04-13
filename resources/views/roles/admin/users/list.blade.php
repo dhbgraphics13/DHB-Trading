@@ -157,6 +157,15 @@
                                                             <p class="label text-danger"> {{ $message }}</p>
                                                             @enderror
                                                         </div>
+                                                        
+                                                         <div class="form-group">
+                                                            <label for="formrow-firstname-input">Password <small>(if change otherwise leave blank)</small></label>
+                                                      
+                                                            {{ Form::text('password',null, ['class' => 'form-control' , 'placeholder'=>'Enter New Password ']) }}
+                                                            @error('password')
+                                                            <p class="label text-danger"> {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
 
                                                         <div class="form-group mb-4">
                                                             <label>Status</label>
