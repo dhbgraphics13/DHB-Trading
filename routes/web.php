@@ -48,7 +48,7 @@ Route::group([ 'middleware' =>  ['is_admin','auth' , '2fa' ]], function() { //ad
     Route::resource('users',UserController::class);
     Route::resource('categories',CategoryController::class);
 });
-Route::group([ 'middleware' =>  ['is_admin','is_admin_and_manager','auth' , '2fa' ]], function() { //admin and manager
+Route::group([ 'middleware' =>  ['is_admin_and_manager','auth' , '2fa' ]], function() { //admin and manager
     
     Route::resource('orders',OrderController::class)->except(['update', 'show']);
     Route::post('orders/update/{orderId}', [OrderController::class,'update'])->name('order.update');
