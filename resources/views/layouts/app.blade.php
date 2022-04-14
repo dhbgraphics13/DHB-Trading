@@ -3,9 +3,9 @@
     <head>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta charset="utf-8" />
-        <title> Admin Dashboard</title>
+        <title>DHb Trading @auth | {{ Auth::user()->name }}  @endauth </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="DHB Trading | India" name="description" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
         <!-- Bootstrap Css -->
