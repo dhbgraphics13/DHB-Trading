@@ -4,7 +4,7 @@
     <div class="container-fluid p-0">
         <div class="row no-gutters">
 
-            <div class="col-xl-9">
+            <div class="col-xl-9 d-none d-sm-block">
                 <div class="auth-full-bg pt-lg-5 p-4">
                     <div class="w-100">
                         <div class="bg-overlay"></div>
