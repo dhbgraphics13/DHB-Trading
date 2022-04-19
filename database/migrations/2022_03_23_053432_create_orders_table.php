@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('uuid');
             $table->date('job_done_on')->nullable();
             $table->timestamps();
-             $table->date('deleted_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
