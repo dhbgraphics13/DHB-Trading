@@ -139,6 +139,7 @@ class OrderController extends Controller
             'due_date'         => dateFormat($inputs['due_date']),
         ];
 
+         dd($order);
           $this->_order->store($data,$orderId); //save data in Orders table
 
         Session::flash('success', 'Order has been Update successfully.');
