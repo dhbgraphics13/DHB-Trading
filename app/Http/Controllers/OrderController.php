@@ -78,7 +78,7 @@ class OrderController extends Controller
             'address'          => $inputs['address'],
             'user_id'          => Auth::id(),
             'payment_method'   => $inputs['payment_method'],
-            'total_price'      => empty($inputs['total_price']) ? null : $inputs['total_price'],
+              'total_price'      => empty($inputs['total_price']) ? null : deciamlRoundOff($inputs['total_price'],4),
             'uuid'             => uuid(),
             'due_date'         => dateFormat($inputs['due_date']),
            'order_details'     => $inputs['order_details'],
@@ -134,7 +134,7 @@ class OrderController extends Controller
             'address'          => $inputs['address'],
             'user_id'          => Auth::id(),
             'payment_method'   => $inputs['payment_method'],
-            'total_price'      => empty($inputs['total_price']) ? null : $inputs['total_price'],
+            'total_price'      => empty($inputs['total_price']) ? null : deciamlRoundOff($inputs['total_price'],4),
             'order_details'     => $inputs['order_details'],
             'due_date'         => dateFormat($inputs['due_date']),
         ];
