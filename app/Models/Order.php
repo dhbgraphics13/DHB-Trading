@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+   use HasFactory, SoftDeletes;
 
     protected $fillable =
         [
@@ -22,7 +23,7 @@ class Order extends Model
             'total_price',
             'uuid',
             'job_done_on',
-            'user_id','order_details'
+            'user_id','order_details','deleted_at'
         ];
 
     public function store($inputs, $id = null)
