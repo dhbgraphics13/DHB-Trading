@@ -70,7 +70,7 @@
                        </div>
 
                    </div>--}}
-            <div class="col-xl-4">
+            <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
                         @if(isset($recent_orders) && $recent_orders->count()>0)
@@ -90,7 +90,7 @@
                                             <div class="media-body">
                                                 <div>
                                                     {!! $order->name .' | <b> Due date :</b>'. dateHuman($order->due_date)  !!} <br>
-                                                    {!! ' | <b> Status :</b> '.getStatusName($order->status). ' | <b> Designer :</b> '. $order->user->name !!}
+                                                    {!! ' | <b> Status :</b> '.getStatusName($order->status) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-8">
+         {{--   <div class="col-xl-8">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mini-stats-wid">
@@ -167,14 +167,14 @@
 
 
 
-            </div>
+            </div>--}}
         </div>
         <!-- end row -->
 
 
         <!-- end row -->
 
-    {{--    <div class="row">
+       {{-- <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -376,8 +376,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- end row --> --}}
+        </div>--}}
+        <!-- end row -->
     </div>
     <!-- container-fluid -->
 @endsection
