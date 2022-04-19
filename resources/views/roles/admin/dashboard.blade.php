@@ -12,7 +12,7 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-{{--                            <li class="breadcrumb-item active">Vertical Layout</li>--}}
+                            {{--                            <li class="breadcrumb-item active">Vertical Layout</li>--}}
                         </ol>
                     </div>
 
@@ -22,88 +22,88 @@
         <!-- end page title -->
 
         <div class="row">
-     {{--       <div class="col-xl-4">
-                <div class="card overflow-hidden">
-                    <div class="bg-soft-primary">
-                        <div class="row">
-                            <div class="col-7">
-                                <div class="text-primary p-3">
-                                    <h5 class="text-primary">Welcome Back !</h5>
-                                    <p> Dashboard</p>
-                                </div>
-                            </div>
-                            <div class="col-5 align-self-end">
-                                <img src="{{asset('assets/images/profile-img.png')}}" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="avatar-md profile-user-wid mb-4">
-                                    <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="" class="img-thumbnail rounded-circle">
-                                </div>
-                                <h5 class="font-size-15 text-truncate">Henry Price</h5>
-                                <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
-                            </div>
+            {{--       <div class="col-xl-4">
+                       <div class="card overflow-hidden">
+                           <div class="bg-soft-primary">
+                               <div class="row">
+                                   <div class="col-7">
+                                       <div class="text-primary p-3">
+                                           <h5 class="text-primary">Welcome Back !</h5>
+                                           <p> Dashboard</p>
+                                       </div>
+                                   </div>
+                                   <div class="col-5 align-self-end">
+                                       <img src="{{asset('assets/images/profile-img.png')}}" alt="" class="img-fluid">
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="card-body pt-0">
+                               <div class="row">
+                                   <div class="col-sm-4">
+                                       <div class="avatar-md profile-user-wid mb-4">
+                                           <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="" class="img-thumbnail rounded-circle">
+                                       </div>
+                                       <h5 class="font-size-15 text-truncate">Henry Price</h5>
+                                       <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
+                                   </div>
 
-                            <div class="col-sm-8">
-                                <div class="pt-4">
+                                   <div class="col-sm-8">
+                                       <div class="pt-4">
 
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <h5 class="font-size-15">125</h5>
-                                            <p class="text-muted mb-0">Projects</p>
+                                           <div class="row">
+                                               <div class="col-6">
+                                                   <h5 class="font-size-15">125</h5>
+                                                   <p class="text-muted mb-0">Projects</p>
+                                               </div>
+                                               <div class="col-6">
+                                                   <h5 class="font-size-15">$1245</h5>
+                                                   <p class="text-muted mb-0">Revenue</p>
+                                               </div>
+                                           </div>
+                                           <div class="mt-4">
+                                               <a href="" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                   </div>--}}
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        @if(isset($recent_orders) && $recent_orders->count()>0)
+                            <h4 class="card-title mb-5">Last 12 hours Active Orders status</h4>
+                            <ul class="verti-timeline list-unstyled">
+
+                                @foreach($recent_orders as $order)
+                                    <li class="event-list">
+                                        <div class="event-timeline-dot">
+                                            <i class="bx bx-right-arrow-circle font-size-18"></i>
                                         </div>
-                                        <div class="col-6">
-                                            <h5 class="font-size-15">$1245</h5>
-                                            <p class="text-muted mb-0">Revenue</p>
+                                        <div class="media">
+                                            <div class="mr-3">
+                                                <h5 class="font-size-14">{{ 'OrderID #' .$order->id }} <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i></h5>
+                                                <p>{{dateHuman($order->created_at)}}</p>
+                                            </div>
+                                            <div class="media-body">
+                                                <div>
+                                                    {!! $order->name .' | <b> Due date :</b>'. dateHuman($order->due_date)  !!} <br>
+                                                    {!! ' | <b> Status :</b> '.getStatusName($order->status) !!}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mt-4">
-                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        {{--                    <div class="text-center mt-4"><a href="" class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="mdi mdi-arrow-right ml-1"></i></a></div>--}}
                     </div>
                 </div>
-
-            </div>--}}
-            <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    @if(isset($recent_orders) && $recent_orders->count()>0)
-                    <h4 class="card-title mb-5">Last 12 hours Active Orders status</h4>
-                    <ul class="verti-timeline list-unstyled">
-
-                        @foreach($recent_orders as $order)
-                        <li class="event-list">
-                            <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle font-size-18"></i>
-                            </div>
-                            <div class="media">
-                                <div class="mr-3">
-                                    <h5 class="font-size-14">{{ 'OrderID #' .$order->id }} <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ml-2"></i></h5>
-                                    <p>{{dateHuman($order->created_at)}}</p>
-                                </div>
-                                <div class="media-body">
-                                    <div>
-                                        {!! $order->name .' | <b> Due date :</b>'. dateHuman($order->due_date)  !!} <br>
-                                       {!! ' | <b> Status :</b> '.getStatusName($order->status) !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                    @endif
-{{--                    <div class="text-center mt-4"><a href="" class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="mdi mdi-arrow-right ml-1"></i></a></div>--}}
-                </div>
-            </div>
             </div>
 
-            <div class="col-xl-8">
+         {{--   <div class="col-xl-8">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mini-stats-wid">
@@ -167,14 +167,14 @@
 
 
 
-            </div>
+            </div>--}}
         </div>
         <!-- end row -->
 
 
         <!-- end row -->
 
-        <div class="row">
+       {{-- <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -376,7 +376,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <!-- end row -->
     </div>
     <!-- container-fluid -->
