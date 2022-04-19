@@ -198,9 +198,8 @@ function arrayInList($array , $id)
 
 function deciamlRoundOff($decimal, $number)
 {
-   return number_format($decimal, $number);
+   return number_format($decimal, $number,'.','');
 }
-
 
 function OrderStatusOptions() {
     return [
