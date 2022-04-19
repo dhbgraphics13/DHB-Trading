@@ -122,7 +122,7 @@
                         <div class="form-group row">
                             <label for="payment_method" class="col-md-2 col-form-label">Total Price</label>
                             <div class="col-md-10" id="wrapper_payment_method">
-                                {{ Form::text('total_price',deciamlRoundOff($order->total_price,2)??0, ['class' => 'form-control']) }}
+                                {{ Form::text('total_price',deciamlRoundOff($order->total_price,4)??0, ['class' => 'form-control']) }}
                         </div>
                         </div>
                     </div>
